@@ -6,7 +6,7 @@ const fs = require('fs');
 // const generateFile = require('');
 
 // TODO: Create an array of questions for user input
-const userPrompts =
+const userInput =
   [
     {
       type: 'input',
@@ -56,7 +56,7 @@ const userPrompts =
     },
     {
       type: 'input',
-      name: 'contribute',
+      name: 'contributions',
       message: 'How can other users make contributions to this project?'
     },
     {
@@ -76,26 +76,24 @@ const userPrompts =
     },
     {
       type: 'input',
-      name: 'readmeTitle',
+      name: 'markdownTitle',
       message: 'What title should I give this file?'
     }
   ];
 ;
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
+function writeToFile(markdownTitle,  data) {
   fs.appendFile(`${fileName}.md`, data,
-  (err) => ? console.log(err) : console.log(`Oh, the sweet, sweet smell of success! ${fileName}.md has been created!`)
+  (err) => console.log(err) || console.log(`Oh, the sweet, sweet smell of success! ${fileName}.md has been created!`)
   )
 };
 
 // TODO: Create a function to initialize app
-function init() {
-  inquirer.prompt(userPrompts).then((answers) => {
-    console.log(generateMarkdown(answers));
-  })
-  };
+async function init() {
+  var answers = await userInput();
+  writeToFile((answers.fileName), (generateMarkdown(answers)));
+ };
 ;
-
 // Function call to initialize app
 init();
