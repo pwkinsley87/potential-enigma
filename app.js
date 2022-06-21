@@ -6,8 +6,8 @@ const fs = require('fs');
 // const generateFile = require('');
 
 // TODO: Create an array of questions for user input
-const userInput =
-  [
+function userInput() {
+   return inquirer.prompt([
     {
       type: 'input',
       name: 'projectTitle',
@@ -79,8 +79,11 @@ const userInput =
       name: 'markdownTitle',
       message: 'What title should I give this file?'
     }
-  ];
-;
+  ])
+  .then(response => {
+  console.log(response)
+  })
+};
 
 // TODO: Create a function to write README file
 function writeToFile(markdownTitle,  data) {
